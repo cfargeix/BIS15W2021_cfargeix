@@ -2,7 +2,7 @@
 Welcome to my respository!
 
 ## About and Contact Info
-Hi my name is Claire (they/them), a fourth year biological sciences major looking for experience in R. 
+Hi my name is Claire (they/them), a fourth year biological sciences major looking for experience in R. \  
 [Email](mailto:cefargeix@ucdavis.edu)
 
 ## Class Links  
