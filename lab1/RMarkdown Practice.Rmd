@@ -1,0 +1,24 @@
+---
+title: "RMarkdown Practice"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## **claire fargeix**
+## _this is should be in italics?_
+
+### this is my [email](mailto:cefargeix@ucdavis.edu)
+### this is [google](https://google.com)
+
+```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
