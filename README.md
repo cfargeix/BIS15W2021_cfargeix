@@ -3,7 +3,7 @@ Welcome to my respository!
 
 ## About and Contact Info
 Hi my name is Claire (they/them), a fourth year biological sciences major looking for experience in R.   
-[Email](mailto:cefargeix@ucdavis.edu)
+Here's my [Email](mailto:cefargeix@ucdavis.edu)!
 
 ## Class Links  
 [BIS 15L Webpage](https://jmledford3115.github.io/datascibiol/)  
