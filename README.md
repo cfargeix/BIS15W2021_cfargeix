@@ -1,5 +1,5 @@
 # Claire Fargeix's BIS15L Repository
-Welcome to my respository!
+Welcome to my respository! I will be updating it with all my work for this quarter.
 
 ## About and Contact Info
 Hi my name is Claire (they/them)! I'm a fourth year biological sciences major looking to learn R.   
