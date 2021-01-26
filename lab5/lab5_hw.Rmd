@@ -103,6 +103,10 @@ filter(good_guys, race=="Asgardian")
 bad_guys %>%
   filter(race == "Human", gender == "Male", height >= 200)
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 9. OK, so are there more good guys or bad guys that are bald (personal interest)?
 **/  There are equal numbers of good and bad bald superheroes.**
@@ -110,6 +114,8 @@ bad_guys %>%
 length(filter(good_guys, is.na(hair_color)))
 length(filter(bad_guys, is.na(hair_color)))
 ```
+
+</div>
 
 10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight over 300?
 ```{r}
