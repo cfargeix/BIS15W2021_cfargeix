@@ -105,7 +105,7 @@ refocus_fisheries %>%
   group_by(country) %>% 
   summarize(total_catch = sum(catch, na.rm = TRUE)) %>% 
   arrange(desc(total_catch)) %>% 
-  head(total_catch, n = 1)
+  head(total_catch, n = 1) 
 ```
 
 8. Which five countries caught the most cephalopods between 2008-2012?
