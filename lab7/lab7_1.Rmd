@@ -78,7 +78,7 @@ msleep %>%
 ```
 
 ## NA's using `purr`
-What if we are working with hundreds or thousands of variables?! In order to deal with this problem efficiently we can use another package in the tidyverse called `purrr`. We will talk more about `purr` later, but for now let's have a look!
+What if we are working with hundreds or thousands of variables?! In order to deal with this problem efficiently we can use another package in the tidyverse called `purrr`. We will talk more about `purrr` later, but for now let's have a look!
 
 This handy bit of code generates a new data frame that sums all NA's across variables. This does the same thing as above, but it is faster.  
 ```{r}
@@ -139,7 +139,7 @@ hist(amniota$egg_mass_g)
 ```
 
 4. Given that we know that the output of #2 is wrong, what do you think is the best approach for dealing with NA's in the `amniote` data?  
-
+I think we have to look into the value they are putting to mean NA (-999 probably) and replace with NA.
 
 ## Replacing values with NA
 If you are certain that NA's are represented by a specific value in the data, the best way to deal with them is to replace the value with NA. This is similar to a find & replace function in excel. Although you can do this when you import the data, in most cases you will need to (and should!) do some exploration first.  

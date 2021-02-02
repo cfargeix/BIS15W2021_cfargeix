@@ -1,11 +1,11 @@
 ---
 title: "Lab 7 Homework"
-author: "Please Add Your Name Here"
+author: "Claire Fargeix"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -32,7 +32,7 @@ Myhrvold N, Baldridge E, Chan B, Sivam D, Freeman DL, Ernest SKM (2015). “An a
 database to perform comparative analyses with birds, mammals, and reptiles.” _Ecology_, *96*, 3109.
 doi: 10.1890/15-0846.1 (URL: https://doi.org/10.1890/15-0846.1).
 ```{r}
-
+amniota <- readr::read_csv("data/amniota.csv")
 ```
 
 `amphibio` data:  
@@ -40,65 +40,83 @@ Oliveira BF, São-Pedro VA, Santos-Barrera G, Penone C, Costa GC (2017). “Amph
 for amphibian ecological traits.” _Scientific Data_, *4*, 170123. doi: 10.1038/sdata.2017.123 (URL:
 https://doi.org/10.1038/sdata.2017.123).
 ```{r}
-
+amphibio <- readr::read_csv("data/amphibio.csv")
 ```
 
 ## Questions  
 **2. Do some exploratory analysis of the `amniota` data set. Use the function(s) of your choice. Try to get an idea of how NA's are represented in the data.**  
 
 ```{r}
-
+amniota %>% 
+  skimr::skim()
 ```
 
 **3. Do some exploratory analysis of the `amphibio` data set. Use the function(s) of your choice. Try to get an idea of how NA's are represented in the data.**  
 
 ```{r}
-
+amphibio %>% 
+  skimr::skim()
+```
+**4. How many total NA's are in each data set? Do these values make sense? Are NA's represented by values?**    
+NAs in the amniota dataset are clearly not represented with NA but with other values, probably -999. The number of NAs in the amphibio data set is more reasonable, but there could also be other ways of representing them in the data set.
+```{r}
+amniota %>% 
+  summarize(number_nas=sum(is.na(amniota)))
 ```
 
-**4. How many total NA's are in each data set? Do these values make sense? Are NA's represented by values?**   
-
 ```{r}
-
-```
-
-```{r}
-
+amphibio %>% 
+  summarize(number_nas=sum(is.na(amphibio)))
 ```
 
 **5. Make any necessary replacements in the data such that all NA's appear as "NA".**   
 ```{r}
-
+amniota <- amniota %>% 
+  na_if("-999")
 ```
 
 ```{r}
-
+amphibio <- amphibio %>% 
+  na_if("-999")
 ```
 
 **6. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for the `amniota` data.**  
 ```{r}
-
+amniota %>%
+  naniar::miss_var_summary()
 ```
 
 **7. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for the `amphibio` data.**
 ```{r}
-
+amphibio %>%
+  naniar::miss_var_summary()
 ```
 
 **8. For the `amniota` data, calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NA's are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NA's?**  
-
+The 100% missing data for mammals makes sense as mammals do not lay eggs, so the NAs represent data that is impossible. For aves, the NAs simply represent missing data. For reptilia, the NAs probably respresent a mix of missing and impossible data.
 ```{r}
-
+amniota %>%
+  group_by(class) %>%
+  select(class, egg_mass_g) %>% 
+  naniar::miss_var_summary(class=T)
 ```
 
-**9. The `amphibio` data have variables that classify species as fossorial (burrowing), terrestrial, aquatic, or arboreal.Calculate the number of NA's in each of these variables. Do you think that the authors intend us to think that there are NA's in these columns or could they represent something else? Explain.**
+**9. The `amphibio` data have variables that classify species as fossorial (burrowing), terrestrial, aquatic, or arboreal. Calculate the number of NA's in each of these variables. Do you think that the authors intend us to think that there are NA's in these columns or could they represent something else? Explain.**   
+The NAs in this column could be as if the authors were saying FALSE. The other categories like this all have either 1 values or NAs. This could be interpreted like 1 as in yes fossorial/terrestrial/aquatic/arboreal, NA as in no, not that.
 ```{r}
-
+amphibio %>%
+  select(Fos, Aqu, Ter, Arb) %>% 
+  naniar::miss_var_summary()
 ```
 
 **10. Now that we know how NA's are represented in the `amniota` data, how would you load the data such that the values which represent NA's are automatically converted?**
 ```{r}
-
+amniota_auto <- 
+  readr::read_csv(file = "data/amniota.csv", na = c("-999"))
+```
+```{r}
+amniota_auto %>%
+  naniar::miss_var_summary()
 ```
 
 ## Push your final code to GitHub!
