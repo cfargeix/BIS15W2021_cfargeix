@@ -27,7 +27,11 @@ The package `here` is a nice option for keeping directories clear when loading f
 
 ```r
 #install.packages("here")
-#I'm commenting this out because I kept on getting a weird error message when I tried to knit this file. It worked pre-knit, but the only way I could get the knit to work was to work around it. I understand how "here" works, but for the sake of submitting this homework on time I'm just using what we learned previously. I hope that this is ok! The rest of the homework is unmodified, this just affects the loading of the data!
+#I'm commenting this out because I kept on getting a weird error message when I tried to knit this file.  
+#It worked pre-knit, but the only way I could get the knit to work was to work around it.   
+#I understand how "here" works, but for the sake of submitting this homework on time I'm just using what we learned previously.   
+#I hope that this is ok!   
+#The rest of the homework is unmodified, this just affects the loading of the data!
 ```
 
 ## Data
