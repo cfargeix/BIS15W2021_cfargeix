@@ -37,7 +37,7 @@ amniota <- readr::read_csv("data/amniota.csv")
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   class = col_character(),
@@ -47,7 +47,7 @@ amniota <- readr::read_csv("data/amniota.csv")
 ##   species = col_character(),
 ##   common_name = col_character()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 `amphibio` data:  
@@ -61,7 +61,7 @@ amphibio <- readr::read_csv("data/amphibio.csv")
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   id = col_character(),
@@ -72,7 +72,7 @@ amphibio <- readr::read_csv("data/amphibio.csv")
 ##   Seeds = col_logical(),
 ##   OBS = col_logical()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```
@@ -300,7 +300,7 @@ amniota %>%
 ##  8 egg_length_mm                   20702     97.1
 ##  9 weaning_weight_g                20258     95.0
 ## 10 female_svl_cm                   20242     94.9
-## # … with 26 more rows
+## # ... with 26 more rows
 ```
 
 **7. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for the `amphibio` data.**
@@ -324,7 +324,7 @@ amphibio %>%
 ##  8 Wet_cold   6625     97.8
 ##  9 Crepu      6608     97.5
 ## 10 Dry_warm   6572     97.0
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 **8. For the `amniota` data, calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NA's are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NA's?**  
@@ -375,7 +375,7 @@ amniota_auto <-
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   class = col_character(),
@@ -395,7 +395,7 @@ amniota_auto <-
 ##   female_body_mass_at_maturity_g = col_logical(),
 ##   no_sex_svl_cm = col_logical()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```
@@ -429,7 +429,7 @@ amniota_auto %>%
 ##  8 female_body_mass_at_maturity_g  21322     100 
 ##  9 no_sex_svl_cm                   21322     100 
 ## 10 birth_or_hatching_svl_cm        21321     100.
-## # … with 26 more rows
+## # ... with 26 more rows
 ```
 
 ## Push your final code to GitHub!
