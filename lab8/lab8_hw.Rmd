@@ -101,6 +101,10 @@ sydneybeaches_long <- sydneybeaches_long %>%
 
 sydneybeaches_long
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 
 7. What is the average `enterococci_cfu_100ml` by year for each beach. Think about which data you will use- long or wide.
@@ -121,6 +125,9 @@ means %>%
               values_from = "mean_enterococci")
 ```
 
+
+
+</div>
 
 9. What was the most polluted beach in 2018?
 The South Maroubra Rockpool was the most polluted in 2018.

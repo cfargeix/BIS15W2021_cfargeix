@@ -1,7 +1,7 @@
 ---
 title: "Lab 8 Homework"
 author: "Claire Fargeix"
-date: "2021-02-04"
+date: "2021-02-08"
 output:
   html_document: 
     theme: spacelab
@@ -47,7 +47,7 @@ sydneybeaches <- readr::read_csv("data/sydneybeaches.csv")
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   BeachId = col_double(),
 ##   Region = col_character(),
@@ -72,14 +72,14 @@ glimpse(sydneybeaches)
 ```
 ## Rows: 3,690
 ## Columns: 8
-## $ beach_id              <dbl> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
-## $ region                <chr> "Sydney City Ocean Beaches", "Sydney City Ocean…
-## $ council               <chr> "Randwick Council", "Randwick Council", "Randwi…
-## $ site                  <chr> "Clovelly Beach", "Clovelly Beach", "Clovelly B…
-## $ longitude             <dbl> 151.2675, 151.2675, 151.2675, 151.2675, 151.267…
-## $ latitude              <dbl> -33.91449, -33.91449, -33.91449, -33.91449, -33…
-## $ date                  <chr> "02/01/2013", "06/01/2013", "12/01/2013", "18/0…
-## $ enterococci_cfu_100ml <dbl> 19, 3, 2, 13, 8, 7, 11, 97, 3, 0, 6, 0, 1, 8, 3…
+## $ beach_id              <dbl> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 2...
+## $ region                <chr> "Sydney City Ocean Beaches", "Sydney City Oce...
+## $ council               <chr> "Randwick Council", "Randwick Council", "Rand...
+## $ site                  <chr> "Clovelly Beach", "Clovelly Beach", "Clovelly...
+## $ longitude             <dbl> 151.2675, 151.2675, 151.2675, 151.2675, 151.2...
+## $ latitude              <dbl> -33.91449, -33.91449, -33.91449, -33.91449, -...
+## $ date                  <chr> "02/01/2013", "06/01/2013", "12/01/2013", "18...
+## $ enterococci_cfu_100ml <dbl> 19, 3, 2, 13, 8, 7, 11, 97, 3, 0, 6, 0, 1, 8,...
 ```
 
 
@@ -90,7 +90,7 @@ library(here)
 ```
 
 ```
-## here() starts at /Users/clairefargeix/Desktop/my rep
+## here() starts at D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_cfargeix
 ```
 
 The quotes show the folder structure from the root directory.
@@ -125,7 +125,7 @@ sydneybeaches_long
 ##  8 Clovelly Beach 23/02/2013                    97
 ##  9 Clovelly Beach 07/03/2013                     3
 ## 10 Clovelly Beach 25/03/2013                     0
-## # … with 3,680 more rows
+## # ... with 3,680 more rows
 ```
 
 4. Pivot the data such that the dates are column names and each beach only appears once. Name the object `sydneybeaches_wide`
@@ -144,18 +144,18 @@ sydneybeaches_wide
 ## # A tibble: 11 x 345
 ##    site  `02/01/2013` `06/01/2013` `12/01/2013` `18/01/2013` `30/01/2013`
 ##    <chr>        <dbl>        <dbl>        <dbl>        <dbl>        <dbl>
-##  1 Clov…           19            3            2           13            8
-##  2 Coog…           15            4           17           18           22
-##  3 Gord…           NA           NA           NA           NA           NA
-##  4 Litt…            9            3           72            1           44
-##  5 Mala…            2            4          390           15           13
-##  6 Maro…            1            1           20            2           11
-##  7 Sout…            1            0           33            2           13
-##  8 Sout…           12            2          110           13          100
-##  9 Bond…            3            1            2            1            6
-## 10 Bron…            4            2           38            3           25
-## 11 Tama…            1            0            7           22           23
-## # … with 339 more variables: `05/02/2013` <dbl>, `11/02/2013` <dbl>,
+##  1 Clov~           19            3            2           13            8
+##  2 Coog~           15            4           17           18           22
+##  3 Gord~           NA           NA           NA           NA           NA
+##  4 Litt~            9            3           72            1           44
+##  5 Mala~            2            4          390           15           13
+##  6 Maro~            1            1           20            2           11
+##  7 Sout~            1            0           33            2           13
+##  8 Sout~           12            2          110           13          100
+##  9 Bond~            3            1            2            1            6
+## 10 Bron~            4            2           38            3           25
+## 11 Tama~            1            0            7           22           23
+## # ... with 339 more variables: `05/02/2013` <dbl>, `11/02/2013` <dbl>,
 ## #   `23/02/2013` <dbl>, `07/03/2013` <dbl>, `25/03/2013` <dbl>,
 ## #   `02/04/2013` <dbl>, `12/04/2013` <dbl>, `18/04/2013` <dbl>,
 ## #   `24/04/2013` <dbl>, `01/05/2013` <dbl>, `20/05/2013` <dbl>,
@@ -188,7 +188,7 @@ sydneybeaches_wide
 ## #   `29/03/2014` <dbl>, `22/04/2014` <dbl>, `14/04/2014` <dbl>,
 ## #   `30/04/2014` <dbl>, `12/05/2014` <dbl>, `28/05/2014` <dbl>,
 ## #   `03/06/2014` <dbl>, `19/06/2014` <dbl>, `03/07/2014` <dbl>,
-## #   `18/07/2014` <dbl>, `01/08/2014` <dbl>, …
+## #   `18/07/2014` <dbl>, `01/08/2014` <dbl>, ...
 ```
 
 5. Pivot the data back so that the dates are data and not column names.
@@ -216,7 +216,7 @@ sydneybeaches_long
 ##  8 Clovelly Beach 23/02/2013                    97
 ##  9 Clovelly Beach 07/03/2013                     3
 ## 10 Clovelly Beach 25/03/2013                     0
-## # … with 3,774 more rows
+## # ... with 3,774 more rows
 ```
 
 
@@ -243,8 +243,12 @@ sydneybeaches_long
 ##  8 Clovelly Beach 23    02    2013                     97
 ##  9 Clovelly Beach 07    03    2013                      3
 ## 10 Clovelly Beach 25    03    2013                      0
-## # … with 3,774 more rows
+## # ... with 3,774 more rows
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 
 7. What is the average `enterococci_cfu_100ml` by year for each beach. Think about which data you will use- long or wide.
@@ -287,6 +291,9 @@ means %>%
 ## 1   50.6   26.3   31.2   42.2   20.7   33.1
 ```
 
+
+
+</div>
 
 9. What was the most polluted beach in 2018?
 The South Maroubra Rockpool was the most polluted in 2018.
