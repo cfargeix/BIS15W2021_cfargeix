@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Claire Fargeix"
-date: "2021-02-11"
+date: "2021-02-15"
 output:
   html_document: 
     theme: spacelab
@@ -33,7 +33,7 @@ deserts <- read_csv(here("lab10", "data", "surveys_complete.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   record_id = col_double(),
 ##   month = col_double(),
@@ -60,19 +60,19 @@ glimpse(deserts)
 ```
 ## Rows: 34,786
 ## Columns: 13
-## $ record_id       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…
-## $ month           <dbl> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,…
-## $ day             <dbl> 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 1…
-## $ year            <dbl> 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977,…
-## $ plot_id         <dbl> 2, 3, 2, 7, 3, 1, 2, 1, 1, 6, 5, 7, 3, 8, 6, 4, 3, 2,…
-## $ species_id      <chr> "NL", "NL", "DM", "DM", "DM", "PF", "PE", "DM", "DM",…
-## $ sex             <chr> "M", "M", "F", "M", "M", "M", "F", "M", "F", "F", "F"…
-## $ hindfoot_length <dbl> 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38, 35, N…
-## $ weight          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-## $ genus           <chr> "Neotoma", "Neotoma", "Dipodomys", "Dipodomys", "Dipo…
-## $ species         <chr> "albigula", "albigula", "merriami", "merriami", "merr…
-## $ taxa            <chr> "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", "Ro…
-## $ plot_type       <chr> "Control", "Long-term Krat Exclosure", "Control", "Ro…
+## $ record_id       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
+## $ month           <dbl> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, ...
+## $ day             <dbl> 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,...
+## $ year            <dbl> 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, 197...
+## $ plot_id         <dbl> 2, 3, 2, 7, 3, 1, 2, 1, 1, 6, 5, 7, 3, 8, 6, 4, 3, ...
+## $ species_id      <chr> "NL", "NL", "DM", "DM", "DM", "PF", "PE", "DM", "DM...
+## $ sex             <chr> "M", "M", "F", "M", "M", "M", "F", "M", "F", "F", "...
+## $ hindfoot_length <dbl> 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38, 35,...
+## $ weight          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ genus           <chr> "Neotoma", "Neotoma", "Dipodomys", "Dipodomys", "Di...
+## $ species         <chr> "albigula", "albigula", "merriami", "merriami", "me...
+## $ taxa            <chr> "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", "...
+## $ plot_type       <chr> "Control", "Long-term Krat Exclosure", "Control", "...
 ```
 
 ```r
@@ -135,7 +135,7 @@ deserts %>%
 ##  8 Reithrodontomys sp.              2
 ##  9 Zonotrichia     leucophrys       2
 ## 10 Lizard          sp.              4
-## # … with 38 more rows
+## # ... with 38 more rows
 ```
 
 
@@ -159,7 +159,7 @@ deserts %>%
 ##  8 Perognathus     flavus        1597
 ##  9 Peromyscus      eremicus      1299
 ## 10 Neotoma         albigula      1252
-## # … with 38 more rows
+## # ... with 38 more rows
 ```
 
 3. What is the proportion of taxa included in this study? Show a table and plot that reflects this count.
@@ -210,8 +210,12 @@ deserts %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
-6. Add another layer to your answer from #4 using `geom_point` to get an idea of how many measurements were taken for each species.
+6. Add another layer to your answer from #5 using `geom_point` to get an idea of how many measurements were taken for each species.
 
 ```r
 deserts_counts <- deserts %>% 
@@ -233,7 +237,7 @@ deserts_counts
 ##  8 eremicus         1299
 ##  9 flavus           1597
 ## 10 fulvescens         75
-## # … with 30 more rows
+## # ... with 30 more rows
 ```
 
 
@@ -247,6 +251,7 @@ deserts_counts %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+</div>
 
 7. [Dipodomys merriami](https://en.wikipedia.org/wiki/Merriam's_kangaroo_rat) is the most frequently sampled animal in the study. How have the number of observations of this species changed over the years included in the study?
 
@@ -277,6 +282,10 @@ deserts %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 9. Which two species have, on average, the highest weight? Once you have identified them, make a new column that is a ratio of `weight` to `hindfoot_length`. Make a plot that shows the range of this new ratio and fill by sex.
 
@@ -306,7 +315,7 @@ deserts %>%
 ##  8 Dipodomys    merriami           43.2
 ##  9 Chaetodipus  baileyi            31.7
 ## 10 Onychomys    leucogaster        31.6
-## # … with 38 more rows
+## # ... with 38 more rows
 ```
 
 ```r
@@ -330,7 +339,7 @@ deserts_chunk
 ##  8        38     7    17  1977      17 NL         M                  33     NA
 ##  9        42     7    18  1977      18 DS         F                  46     NA
 ## 10        58     7    18  1977      12 DS         M                  45     NA
-## # … with 3,746 more rows, and 5 more variables: genus <chr>, species <chr>,
+## # ... with 3,746 more rows, and 5 more variables: genus <chr>, species <chr>,
 ## #   taxa <chr>, plot_type <chr>, weight_length_ratio <dbl>
 ```
 
@@ -345,6 +354,7 @@ deserts_chunk %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+</div>
 
 10. Make one plot of your choice! Make sure to include at least two of the aesthetics options you have learned.
 
@@ -378,7 +388,7 @@ ordii_means
 ##  8  1980 M             34.5
 ##  9  1981 F             36.1
 ## 10  1981 M             35.6
-## # … with 42 more rows
+## # ... with 42 more rows
 ```
 
 ```r
