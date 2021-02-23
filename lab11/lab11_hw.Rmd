@@ -55,6 +55,10 @@ gapminder_life <- gapminder %>%
   summarise(mean_life = mean(lifeExp))
 gapminder_life
 ```
+```{r}
+gapminder %>% 
+  filter(year==1952 | year==2007)
+```
 
 ```{r}
 gapminder_life %>% 
