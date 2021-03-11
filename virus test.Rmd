@@ -1,0 +1,227 @@
+---
+title: "virus testing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(ggthemes)
+library(paletteer)
+library(ggplot2)
+library(RColorBrewer)
+```
+
+#setting up aesthetics for later
+```{r}
+colors<- LaCroixColoR::lacroix_palette("Pamplemousse", type = "discrete")
+```
+
+#importing data
+```{r}
+viruses <- readr::read_csv("data/viruses.csv")
+```
+
+```{r}
+viruses <- clean_names(viruses)
+```
+
+#cleaning data
+```{r}
+viruses <- viruses %>% 
+  filter(level == "Complete") %>% 
+  select(organism_name, organism_groups, level, size_mb, gc_percent, host, genes)
+```
+
+```{r}
+viruses<-viruses %>% 
+  separate(organism_groups, into = c("domain", "group", "family"),sep=";")
+```
+
+```{r}
+viruses_mic <- viruses %>% 
+  select(!domain, !group) %>% 
+  filter(family != "unclassified", family != "Other")
+```
+
+#glimpse of data
+```{r}
+glimpse(viruses_mic)
+```
+
+#average genome size for all classified viruses
+#clearly, mimiviruses stand out
+#lots of variation
+```{r}
+viruses_mic %>% 
+  group_by(family) %>% 
+  summarize(size=mean(size_mb, na.rm = T)) %>% 
+  ggplot(aes(x = family, y = size))+
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 90, hjust=1))
+```
+
+#genome size versus common-ness
+#inverse correlation?
+```{r}
+families_by_size <- viruses_mic %>% 
+  group_by(family) %>% 
+  summarize(size = mean(size_mb, na.rm=T)) %>% 
+  arrange(desc(size))
+
+families_by_size
+```
+
+```{r}
+families_by_number <- viruses_mic %>% 
+  group_by(family) %>% 
+  summarize(num = n_distinct(organism_name)) %>% 
+  arrange(desc(num))
+
+families_by_number
+```
+
+```{r}
+families_by <- full_join(families_by_number, families_by_size)
+families_by
+```
+
+```{r}
+families_by %>% 
+  ggplot(aes(x=num, y=size))+
+  geom_point()
+```
+
+#comparing overall genome size to number of genes
+```{r}
+viruses %>% 
+  ggplot(aes(x=size_mb, y=genes))+
+  geom_point()+
+  geom_smooth()
+
+```
+
+```{r}
+viruses %>% 
+  filter(size_mb >= 1.0, genes <= 250)
+```
+```{r}
+viruses %>% 
+  filter(family=="Mimiviridae")
+```
+```{r}
+viruses %>% 
+  filter(genes != 0) %>% 
+  ggplot(aes(x=size_mb, y=genes))+
+  geom_point()+
+  geom_smooth()
+```
+
+#comparing viruses with bacterial vs archaeal hosts
+#bacteria: larger genome size, more genes, higher gc content
+#similar gene to genome size ratio
+```{r}
+arch_bact <- viruses %>% 
+  filter(host == "archaea"|host == "bacteria")
+```
+
+```{r}
+colors <- LaCroixColoR::lacroix_palette("Pamplemousse", type = "discrete")
+```
+
+```{r}
+display.brewer.pal(2,"PRGn")
+```
+
+
+```{r}
+arch_bact %>% 
+  group_by(host) %>% 
+  summarize(size = mean(size_mb, na.rm = T)) %>%
+  ggplot(aes(x=host, y=size))+
+  geom_col()+scale_fill_brewer(palette = "Dark2")
+```
+
+
+```{r}
+arch_bact %>% 
+  group_by(host) %>% 
+  summarize(size = mean(size_mb, na.rm = T)) %>%
+  ggplot(aes(x=host, y=size))+
+  geom_col()+
+  #theme_solarized()+
+  scale_fill_manual(values=colors)+
+  labs(title = "Genome Size of Viruses by Host",
+       x="Host",
+       y="Genome Size (Mb)")
+```
+
+```{r}
+arch_bact %>% 
+  group_by(host) %>% 
+  summarize(gc = mean(gc_percent, na.rm = T)) %>%
+  ggplot(aes(x=host, y=gc))+
+  geom_col()
+```
+
+```{r}
+arch_bact %>% 
+  group_by(host) %>% 
+  summarize(gene = mean(genes, na.rm = T)) %>%
+  ggplot(aes(x=host, y=gene))+
+  geom_col()
+```
+```{r}
+arch_bact %>% 
+  filter(genes != 0) %>% 
+  group_by(host) %>% 
+  summarize(gene = mean(genes, na.rm = T)) %>%
+  ggplot(aes(x=host, y=gene))+
+  geom_col()
+```
+```{r}
+arch_bact %>% 
+  filter(genes != 0) %>% 
+  mutate(gene_mb_ratio = genes/size_mb) %>% 
+  group_by(host) %>% 
+  summarize(gene_content = mean(gene_mb_ratio, na.rm = T)) %>%
+  ggplot(aes(x=host, y=gene_content))+
+  geom_col()
+```
+ 
+#satellites vs non satellites
+```{r}
+sat_other <- viruses %>% 
+  filter(group == "Satellites" | group == "Other")
+```
+
+```{r}
+sat_other %>% 
+  group_by(group) %>% 
+  summarize(size = mean(size_mb)) %>% 
+  ggplot(aes(x=group, y=size)) +
+  geom_col()
+```
+
+```{r}
+sat_other %>% 
+  group_by(group) %>% 
+  summarize(gene = mean(genes)) %>% 
+  ggplot(aes(x=group, y=gene)) +
+  geom_col()
+```
+
+```{r}
+sat_other %>% 
+#  filter(genes != 0) %>% 
+  mutate(gene_mb_ratio = genes/size_mb) %>% 
+  group_by(group) %>% 
+  summarize(gene_content = mean(gene_mb_ratio, na.rm = T)) %>%
+  ggplot(aes(x=group, y=gene_content))+
+  geom_col()
+```
+
