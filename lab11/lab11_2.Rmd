@@ -140,6 +140,8 @@ my_palette <- paletteer_d("ggsci::hallmarks_light_cosmic")
 barplot(rep(1,14), axes=FALSE, col=my_palette)
 ```
 
+
+
 Now we just identify `my_palette` as part of `scale_fill_manual()`
 ```{r}
 p+scale_fill_manual(values=my_palette)+
